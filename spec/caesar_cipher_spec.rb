@@ -148,10 +148,11 @@ describe CaesarCipher do
 
   describe '#shift_letters' do
     context 'when passing [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33] with 3 as a shift factor' do
-      it 'returns [75, 104, 111, 111, 32, 90, 114, 117, 111, 103, 33]' do
+      it 'returns [75, 104, 111, 111, 114, 32, 90, 114, 117, 111, 103, 33]' do
         unicode_array = [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33]
-        result = cipher.shift_letters(unicode_array)
-        expectation = [75, 104, 111, 111, 32, 90, 114, 117, 111, 103, 33]
+        shift_factor = 3
+        result = cipher.shift_letters(unicode_array, shift_factor)
+        expectation = [75, 104, 111, 111, 114, 32, 90, 114, 117, 111, 103, 33]
         expect(result).to eq(expectation)
       end
     end
@@ -160,7 +161,7 @@ describe CaesarCipher do
   describe '#caesar_cipher'  do
     context 'when passed a single letter' do
       context 'when passed letter d and number 3' do
-        xit 'returns g' do
+        it 'returns g' do
           letter = 'd'
           shift_factor = 3
           result = cipher.caesar_cipher(letter, shift_factor)
@@ -169,7 +170,7 @@ describe CaesarCipher do
       end
 
       context 'when passed letter e and number 3' do
-        xit 'returns h' do
+        it 'returns h' do
           letter = 'e'
           shift_factor = 3
           result = cipher.caesar_cipher(letter, shift_factor)
