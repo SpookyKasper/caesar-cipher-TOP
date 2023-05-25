@@ -38,13 +38,33 @@ describe CaesarCipher do
     end
   end
 
-  describe '#shift_letters' do
-    context 'when passing [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33] with 3 as a shift factor'
-    it 'returns [75, 104, 111, 111, 32, 90, 114, 117, 111, 103, 33]' do
-      unicode_array = [72, 101, 108, 108, 111, 32, 87, 111, 114, 108, 100, 33]
-      result = cipher.shift_letters(unicode_array)
-      expectation = [75, 104, 111, 111, 32, 90, 114, 117, 111, 103, 33]
-      expect(result).to eq(expectation)
+  describe '#is_letter?' do
+    context 'when passed a letter' do
+      it 'returns true' do
+        unicode = 'a'.ord
+        result = cipher.is_letter?(unicode)
+        expect(result).to be(true)
+      end
+
+      it 'returns true' do
+        unicode = 'Z'.ord
+        result = cipher.is_letter?(unicode)
+        expect(result).to be(true)
+      end
+    end
+
+    context 'when passed something else' do
+      it 'returns false' do
+        unicode = ' '.ord
+        result = cipher.is_letter?(unicode)
+        expect(result).to be(false)
+      end
+
+      it 'returns false' do
+        unicode = '!'.ord
+        result = cipher.is_letter?(unicode)
+        expect(result).to be(false)
+      end
     end
   end
 
